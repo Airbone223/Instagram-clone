@@ -43,6 +43,9 @@ export default function App() {
                         <ProtectedRoute user={user} path={ROUTES.FOLLOWING}>
                             <Following/>
                         </ProtectedRoute>
+                        <ProtectedRoute user={user} path={ROUTES.POSTS}>
+                            <Following/>
+                        </ProtectedRoute>
                         <Route component={NotFound}/>
                     </Switch>
                 </Suspense>

@@ -66,10 +66,12 @@ export default function ProfileHeader({ photosCount, profile }) {
                        <Skeleton count={1} width={677} height={24} />
                    ) : (
                        <>
+                       <Link to={`/p/${profile.username}/posts`}>
                        <p className="mr-10">
                            <span className="font-bold">{photosCount}</span>{` `}
                            {photosCount === 1 ? 'post' : 'posts'}
                        </p>
+                       </Link>
                            <Link to={`/p/${profile.username}/followers`}>
                            <p className="mr-10 cursor-pointer">
                                <span className="font-bold">{profileFollowers}</span>{` `}
