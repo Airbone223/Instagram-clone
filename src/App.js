@@ -16,6 +16,7 @@ const AddNewPost = lazy(() => import ('./pages/add-new-post'))
 const AddAvatar = lazy(() => import ('./pages/add-avatar'))
 const Followers = lazy(() => import('./pages/followers'))
 const Following = lazy(() => import('./pages/following'))
+const MyPosts = lazy(() => import('./pages/my-posts'))
 
 export default function App() {
 
@@ -31,10 +32,10 @@ export default function App() {
                         <ProtectedRoute user={user} path={ROUTES.DASHBOARD} exact>
                             <Dashboard/>
                         </ProtectedRoute>
-                        <ProtectedRoute user={user} path={ROUTES.ADD_POST}>
+                        <ProtectedRoute user={user} path={ROUTES.ADD_POST} exact>
                             <AddNewPost/>
                         </ProtectedRoute>
-                        <ProtectedRoute user={user} path={ROUTES.ADD_AVATAR}>
+                        <ProtectedRoute user={user} path={ROUTES.ADD_AVATAR} exact>
                             <AddAvatar/>
                         </ProtectedRoute>
                         <ProtectedRoute user={user} path={ROUTES.FOLLOWERS}>
@@ -44,7 +45,7 @@ export default function App() {
                             <Following/>
                         </ProtectedRoute>
                         <ProtectedRoute user={user} path={ROUTES.POSTS}>
-                            <Following/>
+                            <MyPosts/>
                         </ProtectedRoute>
                         <Route component={NotFound}/>
                     </Switch>

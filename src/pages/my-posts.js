@@ -1,9 +1,12 @@
 import Header from '../components/header'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
+import Post from '../components/post/post'
+import Skeleton from 'react-loading-skeleton'
+import useUserPhotos from '../hooks/use-user-photos'
 
-
-export default function Followers () {
+export default function MyPosts () {
+    const { photos } = useUserPhotos()
     const { username } = useParams()
 
     useEffect( () => {
@@ -26,8 +29,15 @@ export default function Followers () {
                                   strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </span>
-                    <p className="text-blue-medium text-2xl">{username} Posts</p>
-                   <p className="text-center text-2xl text-blue-medium">No posts yet</p>
+                    <div className="mt-5 w-full mr-2">
+                        {!photos?.length ? (
+                            <Skeleton count={4} height={500} className="mb-5" />
+                        ) : photos.length > 0 ? (
+                            photos.map(content =>  <Post key={content.docId} content={content}/>)
+                        ) : (
+                            <p className="text-center text-2xl text-blue-medium">No posts yet</p>
+                        )}
+                    </div>)
                 </div>
             </div>
         </>
